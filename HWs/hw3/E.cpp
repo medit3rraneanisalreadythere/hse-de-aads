@@ -6,30 +6,43 @@ using std::cin;
 using std::cout;
 using std::vector;
 
-void print(vector<int> &numbers, int k)
+const int INF = -222222222;
+
+void print(vector<int> &numbers, int k) 
 {
-	size_t n = numbers.size(), start = 0;
+    int n = numbers.size();
 
-	for (size_t i = 0; i < n; ++i)
+    int st = -1;
+    for (int i = 0; i < n; ++i) 
     {
-    	if (numbers[i] != -222222222)
+        if (numbers[i] != INF) 
         {
-        	start = i;
-        	break;
-        }
-    }
-        
-
-	for (size_t i = start; i < n; i += k)
-    {
-    	if (numbers[i] != -222222222)
-        {
-        	std::cout << numbers[i] << " ";
-        	numbers[i] = -222222222;
+            st = i;
+            break;
         }
     }
 
-	cout << "\n";
+    if (st == -1) 
+    {
+        std::cout << "\n";
+        return;
+    }
+
+    int aliveStep = 0;
+    for (int i = st; i < n; ++i)
+    {
+        if (numbers[i] != INF)
+        {
+            if (aliveStep % k == 0)
+            {
+                cout << numbers[i] << " ";
+                numbers[i] = INF;
+            }
+            aliveStep++;
+        }
+    }
+
+    std::cout << "\n";
 }
 
 int main() {
