@@ -6,15 +6,20 @@
 
 int main(int argc, char** argv)
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
     int n;
     std::cin >> n;
+    std::cin.ignore();
 
     std::vector<int> ans(n);
 
     for (int t = 0; t < n; ++t)
     {
         std::string s, p;
-        std::cin >> s >> p;
+        std::getline(std::cin, s);
+        std::getline(std::cin, p);
 
         int m = (int)s.size();
         int k = (int)p.size();
